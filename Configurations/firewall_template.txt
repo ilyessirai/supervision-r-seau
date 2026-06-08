@@ -1,6 +1,7 @@
 ! Template Configuration for Firewall (ASA style)
 hostname [FIREWALL_NAME]
 !
+! --- Interface Configuration ---
 interface Ethernet1/1
  nameif outside
  security-level 0
@@ -11,8 +12,20 @@ interface Ethernet1/2
  security-level 100
  ip address [INSIDE_IP] [MASK]
 !
+! --- Access Control List (ACL) ---
+! Allow SSH (Port 22) for remote management
+access-list OUTSIDE_IN extended permit tcp any interface outside eq 22
+! Allow HTTP (Port 80) for web traffic
+access-list OUTSIDE_IN extended permit tcp any interface outside eq 80
+! Allow HTTPS (Port 443) for secure web traffic
 access-list OUTSIDE_IN extended permit tcp any interface outside eq 443
+! Implicitly deny all other traffic (standard firewall behavior)
+access-list OUTSIDE_IN extended deny ip any any
 !
+! Apply the ACL to the outside interface
+access-group OUTSIDE_IN in interface outside
+!
+! --- NAT Configuration ---
 nat (inside,outside) after-auto source dynamic any interface
 !
 end

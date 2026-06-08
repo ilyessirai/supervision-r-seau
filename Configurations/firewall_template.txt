@@ -5,12 +5,12 @@ hostname [FIREWALL_NAME]
 interface Ethernet1/1
  nameif outside
  security-level 0
- ip address [OUTSIDE_IP] [MASK]
+ ip address 192.168.1.1 255.255.255.0
 !
 interface Ethernet1/2
  nameif inside
  security-level 100
- ip address [INSIDE_IP] [MASK]
+ ip address 192.168.10.1 255.255.255.0
 !
 ! --- Access Control List (ACL) ---
 ! Allow SSH (Port 22) for remote management

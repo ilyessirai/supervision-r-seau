@@ -14,5 +14,5 @@ def scan_ports(target, ports):
 
 if __name__ == "__main__":
     target_ip = "127.0.0.1"
-    ports_to_scan = [22, 80, 443, 8080]
+    ports_to_scan = [22, 80, 443, 3306]
     scan_ports(target_ip, ports_to_scan)

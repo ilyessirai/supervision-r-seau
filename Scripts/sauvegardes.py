@@ -17,6 +17,6 @@ def perform_backup(source_dir, dest_dir):
 
 if __name__ == "__main__":
     # Example usage for training
-    src = "./Configurations"
-    dst = "./Saves"
+    src = "../Configurations"
+    dst = "../Saves"
     perform_backup(src, dst)

@@ -1,10 +1,25 @@
 ! Template Configuration for Cisco Switch
 hostname [HOSTNAME]
 !
+! --- VLAN Configuration ---
+vlan 10
+ name Data_VLAN
+!
+vlan 20
+ name Voice_VLAN
+!
+! --- Interface Configuration ---
+! Port for VLAN 10
 interface GigabitEthernet0/1
- description Access Port
+ description Access Port - Data
  switchport mode access
- switchport access vlan [VLAN_ID]
+ switchport access vlan 10
+!
+! Port for VLAN 20
+interface GigabitEthernet0/2
+ description Access Port - Voice
+ switchport mode access
+ switchport access vlan 20
 !
 interface Vlan1
  ip address [IP_ADDRESS] [SUBNET_MASK]
